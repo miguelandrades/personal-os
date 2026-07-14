@@ -4,7 +4,9 @@ import type { Config } from 'drizzle-kit';
 config({ path: '.env.local' });
 
 if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL não encontrada no arquivo .env.local');
+  throw new Error(
+    'DATABASE_URL não encontrada. Use .env.local localmente ou um Codespaces Secret.',
+  );
 }
 
 export default {

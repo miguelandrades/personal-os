@@ -6,7 +6,11 @@ import { db } from '@/db';
 import { dailyCheckins, habitLogs, sessions, workouts } from '@/db/schema';
 
 const today = () => new Date().toISOString().slice(0, 10);
-const refresh = () => ['/', '/semana', '/crescimento', '/corpo'].forEach(revalidatePath);
+const refresh = () => {
+  ['/', '/semana', '/crescimento', '/corpo'].forEach((path) => {
+    revalidatePath(path);
+  });
+};
 
 export async function saveCheckin(formData: FormData) {
   const day = String(formData.get('day') || today());
